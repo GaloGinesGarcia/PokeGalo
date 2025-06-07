@@ -1,8 +1,16 @@
 # pokegalo
 
-A new Flutter project.
+Pokemon hecho con dart y flutter.
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/).  
+© 2025 Galo Gines. Todos los derechos reservados.
+
 
 ## Getting Started
+
+Descripcion en progreso.
 
 This project is a starting point for a Flutter application.
 

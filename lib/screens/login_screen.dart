@@ -32,21 +32,19 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Iniciar Sesión"), centerTitle: true),
 
-      // Fondo degradado en la aplicación 
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF001F54), 
-              Color(0xFF87CEEB), 
-            ],
+            colors: [Color(0xFF001F54), Color(0xFF87CEEB)],
           ),
         ),
         child: Padding(
@@ -63,12 +61,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: campoEmail,
                       decoration: const InputDecoration(
                         labelText: 'Correo electrónico',
+                        prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder(),
                         fillColor: Colors.white,
                         filled: true,
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty || !value.contains('@')) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            !value.contains('@')) {
                           return 'Introduce un correo válido';
                         }
                         return null;
@@ -77,19 +78,34 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: campoPassword,
-                      obscureText: true,
-                      decoration: const InputDecoration(
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
                         labelText: 'Contraseña',
-                        border: OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.password_rounded),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                        border: const OutlineInputBorder(),
                         fillColor: Colors.white,
                         filled: true,
                       ),
                       validator: (value) {
-                        if (value == null || value.length < 12){
+                        if (value == null || value.length < 12) {
                           return 'Mínimo 12 caracteres';
                         }
-                        if (!RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$').hasMatch(value)) {
-                        return 'Debe contener mayúscula, número y carácter especial';
+                        if (!RegExp(
+                          r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$',
+                        ).hasMatch(value)) {
+                          return 'Debe contener mayúscula, número y carácter especial';
                         }
                         return null;
                       },
