@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokegalo/screens/create_acount.dart';
+import 'package:pokegalo/screens/create_acount.dart'; // Asegúrate de que este import sea correcto
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,7 +13,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final campoEmail = TextEditingController();
   final campoPassword = TextEditingController();
+  final textoInvitado = TextEditingController();
 
+  // Método para iniciar sesión (con validación)
   void _login() {
     if (_formKey.currentState!.validate()) {
       Navigator.pushReplacement(
@@ -23,13 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // Método para crear cuenta (sin validación)
   void _createAcount() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const CreateAcountScreen()),
-      );
-    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const CreateAcountScreen()),
+    );
   }
 
   bool _obscureText = true;
@@ -164,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // 🟠 Botón Crear cuenta
                     ElevatedButton(
-                      onPressed: _createAcount,
+                      onPressed: _createAcount,  // Redirige sin validación
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -176,6 +177,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         'Crear cuenta',
                         style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+
+                    // Separar más el texto "Entrar como invitado"
+                    const SizedBox(height: 32),
+
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const HomeScreen()),
+                        );
+                      },
+                      child: Text(
+                        'Entrar como invitado',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          decoration: TextDecoration.underline, // Subraya el texto
+                        ),
                       ),
                     ),
                   ],
