@@ -1,6 +1,6 @@
 # pokegalo
 
-Pokemon hecho con dart y flutter.
+Pokemon hecho con dart y flutter. (En desarrollo)
 
 ## 📄 Licencia
 
