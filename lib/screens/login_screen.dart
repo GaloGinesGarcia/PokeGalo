@@ -37,8 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Iniciar Sesión"), centerTitle: true),
-
+      backgroundColor: const Color(0xFF001F54), // Sin AppBar para eliminar barra blanca
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -57,36 +56,70 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    // 🟨 PokeGalo con fuente de Pokémon
+                    Text(
+                      'PokeGalo',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Pokemon', // Asegúrate de que coincida con pubspec.yaml
+                        fontSize: 48,
+                        color: Colors.yellow,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 4,
+                            color: Colors.black,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // 🟦 Subtítulo "Iniciar sesión"
+                    const Text(
+                      'Iniciar Sesión',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+
+                    // 📨 Campo Email
                     TextFormField(
                       controller: campoEmail,
                       decoration: const InputDecoration(
                         labelText: 'Correo electrónico',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        floatingLabelStyle: TextStyle(color: Colors.black),
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder(),
                         fillColor: Colors.white,
                         filled: true,
                       ),
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains('@')) {
+                        if (value == null || value.isEmpty || !value.contains('@')) {
                           return 'Introduce un correo válido';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
+
+                    // 🔒 Campo Contraseña
                     TextFormField(
                       controller: campoPassword,
                       obscureText: _obscureText,
                       decoration: InputDecoration(
                         labelText: 'Contraseña',
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        floatingLabelStyle: const TextStyle(color: Colors.black),
                         prefixIcon: const Icon(Icons.password_rounded),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
+                            _obscureText ? Icons.visibility_off : Icons.visibility,
                           ),
                           onPressed: () {
                             setState(() {
@@ -102,15 +135,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value == null || value.length < 12) {
                           return 'Mínimo 12 caracteres';
                         }
-                        if (!RegExp(
-                          r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$',
-                        ).hasMatch(value)) {
+                        if (!RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$')
+                            .hasMatch(value)) {
                           return 'Debe contener mayúscula, número y carácter especial';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 32),
+
+                    // 🔵 Botón Iniciar sesión
                     ElevatedButton(
                       onPressed: _login,
                       style: ElevatedButton.styleFrom(
@@ -127,6 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
+
+                    // 🟠 Botón Crear cuenta
                     ElevatedButton(
                       onPressed: _createAcount,
                       style: ElevatedButton.styleFrom(

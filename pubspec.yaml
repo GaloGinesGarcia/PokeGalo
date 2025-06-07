@@ -23,6 +23,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Pokemon
+      fonts:
+        - asset: assets/fonts/PokemonSolidFont.ttf
 
 flutter_launcher_icons:
   android: true
