@@ -12,6 +12,11 @@ Este proyecto está licenciado bajo [CC BY-ND 4.0](https://creativecommons.org/l
 
 Descripcion en progreso.
 
+## 📱 Descargar la app Android
+
+[Descargar APK (v1.0.0)](https://github.com/GaloGinesGarcia/PokeGalo/releases/download/v1.0.0/app-release.apk)
+
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
