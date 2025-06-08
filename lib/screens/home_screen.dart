@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pokegalo/screens/login_screen.dart';
+import 'package:pokegalo/screens/theme_provider.dart';
 import 'pokedex_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,12 +9,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
         iconTheme: const IconThemeData(
           color: Colors.white,
-        ), // Icono del drawer en blanco
+        ),
         title: const Text(
           'Inicio',
           style: TextStyle(
@@ -22,6 +26,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
+        actions: [ //* Cambio de tema a modo claro/oscuro
+          IconButton(
+            icon: Icon(
+              themeProvider.isDarkMode ? Icons.nightlight_round : Icons.wb_sunny,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              themeProvider.toggleTheme();
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -38,14 +53,14 @@ class HomeScreen extends StatelessWidget {
               leading: const Icon(Icons.home, color: Colors.blueAccent),
               title: const Text('Inicio'),
               onTap: () {
-                Navigator.pop(context); // Cierra el drawer
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: const Icon(Icons.settings, color: Colors.blueAccent),
               title: const Text('Configuración'),
               onTap: () {
-                Navigator.pop(context); // Cierra el drawer
+                Navigator.pop(context);
               },
             ),
             const Divider(),
@@ -56,9 +71,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.red),
               ),
               onTap: () {
-                Navigator.pop(context); // Cierra el drawer
-
-                // Ir al login y eliminar historial de navegación
+                Navigator.pop(context);
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                   (route) => false,

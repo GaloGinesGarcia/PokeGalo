@@ -8,7 +8,8 @@ plugins {
 android {
     namespace = "com.example.pokegalo"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"//*Esencial para el shared prefereneces. */
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

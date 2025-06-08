@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen.dart';
 import 'pokedex_screen.dart';
 
@@ -11,6 +12,23 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
+
+
+  //* Persistencia de datos dentro de la app
+  _savePreferences(String key, dynamic value) async {
+
+    final prefs = await SharedPreferences.getInstance();
+    if(value is bool){
+      await prefs.setBool(key, value);
+    }else if (value is String){
+      await prefs.setString(key, value);
+    }else if(value is double){
+      await prefs.setDouble(key, value);
+    }else if(value is int){
+      await prefs.setInt(key, value);
+    }
+
+  }
 
   final List<Widget> screens = const [
     HomeScreen(),
