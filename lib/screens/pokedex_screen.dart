@@ -5,12 +5,24 @@ class PokedexScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pokedex"),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF001F54),
+            Color(0xFF87CEEB),
+          ],
+        ),
       ),
-      body: const Center(
-        child: Text("Bienvenido a la Pokedex"),
+      child: const Center(
+        child: Text(
+          'Contenido de la Pokédex',
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
       ),
     );
   }

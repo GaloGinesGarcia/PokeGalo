@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokegalo/screens/create_acount.dart'; // Asegúrate de que este import sea correcto
-import 'home_screen.dart';
+import 'package:pokegalo/screens/create_acount.dart';
+import 'main_screen.dart'; // <-- Redirigimos a MainScreen con NavBar
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,19 +13,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final campoEmail = TextEditingController();
   final campoPassword = TextEditingController();
-  final textoInvitado = TextEditingController();
 
-  // Método para iniciar sesión (con validación)
   void _login() {
     if (_formKey.currentState!.validate()) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
+        MaterialPageRoute(builder: (_) => const MainScreen()),
       );
     }
   }
 
-  // Método para crear cuenta (sin validación)
   void _createAcount() {
     Navigator.pushReplacement(
       context,
@@ -38,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF001F54), // Sin AppBar para eliminar barra blanca
+      backgroundColor: const Color(0xFF001F54),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -57,12 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // 🟨 PokeGalo con fuente de Pokémon
                     Text(
                       'PokeGalo',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontFamily: 'Pokemon', // Asegúrate de que coincida con pubspec.yaml
+                        fontFamily: 'Pokemon',
                         fontSize: 48,
                         color: Colors.yellow,
                         shadows: [
@@ -75,8 +71,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-
-                    // 🟦 Subtítulo "Iniciar sesión"
                     const Text(
                       'Iniciar Sesión',
                       textAlign: TextAlign.center,
@@ -87,8 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 32),
-
-                    // 📨 Campo Email
                     TextFormField(
                       controller: campoEmail,
                       decoration: const InputDecoration(
@@ -108,8 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     const SizedBox(height: 16),
-
-                    // 🔒 Campo Contraseña
                     TextFormField(
                       controller: campoPassword,
                       obscureText: _obscureText,
@@ -144,8 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     const SizedBox(height: 32),
-
-                    // 🔵 Botón Iniciar sesión
                     ElevatedButton(
                       onPressed: _login,
                       style: ElevatedButton.styleFrom(
@@ -162,10 +150,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-
-                    // 🟠 Botón Crear cuenta
                     ElevatedButton(
-                      onPressed: _createAcount,  // Redirige sin validación
+                      onPressed: _createAcount,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent,
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -179,24 +165,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-
-                    // Separar más el texto "Entrar como invitado"
                     const SizedBox(height: 32),
-
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (_) => const HomeScreen()),
+                          MaterialPageRoute(builder: (_) => const MainScreen()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Entrar como invitado',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
-                          decoration: TextDecoration.underline, // Subraya el texto
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
