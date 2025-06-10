@@ -35,13 +35,17 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF001F54),
+      backgroundColor: Colors.black,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF001F54), Color(0xFF87CEEB)],
+            colors: [
+              Color(0xFF0A1E93), // Azul profundo moderno
+              Color(0xFF00CFFF), // Azul neón vibrante
+            ],
+            stops: [0.2, 1.0],
           ),
         ),
         child: Padding(
@@ -143,6 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                        shadowColor: Colors.black,
+                        elevation: 6,
                       ),
                       child: const Text(
                         'Iniciar sesión',
@@ -159,6 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                        shadowColor: Colors.black,
+                        elevation: 6,
                       ),
                       child: const Text(
                         'Crear cuenta',

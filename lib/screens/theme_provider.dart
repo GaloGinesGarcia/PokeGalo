@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+// Clase para el cambio de tema a modo oscuro.
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
 
